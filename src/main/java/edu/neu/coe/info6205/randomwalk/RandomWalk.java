@@ -4,9 +4,7 @@
 
 package edu.neu.coe.info6205.randomwalk;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class RandomWalk {
 
@@ -104,19 +102,15 @@ public class RandomWalk {
         int m = Integer.parseInt(args[0]);  // initial value of m
         int n = 10;
         if (args.length > 1) n = Integer.parseInt(args[1]);
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter the number of movements/experiments in a single iteration: (Enter the value of N) ");
-//        int n = scanner.nextInt();
+
         // Allow users to enter 6 different m values
         for(int i=0; i<6; i++) {
             System.out.println("m = " + m);
-//            System.out.println("Enter the number of steps taken by the man: ");
-//            int m = scanner.nextInt();
+            System.out.println("Enter the number of steps taken by the man: ");
             double meanDistance = randomWalkMulti(m, n);
             System.out.println(m + " steps, mean Distance: " + meanDistance + " over " + n + " experiments\n");
-            // increment m to make a new m value - auto updating of m to form new test cases
+            // increment m by 10 to make a new m value - auto updating of m to form new test cases
             m += 1;
         }
-//        scanner.close();
     }
 }
