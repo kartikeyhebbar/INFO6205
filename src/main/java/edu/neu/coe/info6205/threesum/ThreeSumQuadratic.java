@@ -1,8 +1,6 @@
 package edu.neu.coe.info6205.threesum;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implementation of ThreeSum which follows the approach of dividing the solution-space into
@@ -23,8 +21,9 @@ public class ThreeSumQuadratic implements ThreeSum {
     }
 
     public Triple[] getTriples() {
+        Arrays.sort(a);
         List<Triple> triples = new ArrayList<>();
-        for (int i = 0; i < length; i++) triples.addAll(getTriples(i));
+        for (int i = 0; i < length-1; i++) triples.addAll(getTriples(i));
         Collections.sort(triples);
         return triples.stream().distinct().toArray(Triple[]::new);
     }
@@ -35,24 +34,24 @@ public class ThreeSumQuadratic implements ThreeSum {
      * @param j the index of the middle value.
      * @return a Triple such that
      */
-    public List<Triple> getTriples(int j) {
+    public List<Triple> getTriples(int i) {
         List<Triple> triples = new ArrayList<>();
         // TO BE IMPLEMENTED  : for each candidate, test if a[i] + a[j] + a[k] = 0.
+        Set<Integer> set = new HashSet<>();
 
+        for(int j=i+1; j<length; j++) {
+            int thirdNum = -(a[i] + a[j]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-throw new RuntimeException("implementation missing");
+            // if the set contains the computed third number, it means we have a valid triplet
+            if(set.contains(thirdNum)) {
+                List<Integer> temp = Arrays.asList(a[i], a[j], thirdNum);
+                temp.sort(null);    // sort the triplet set
+                triples.add(new Triple(temp.get(0), temp.get(1), temp.get(2)));
+            }
+            // we will add the j'th value of the array to the set
+            set.add(a[j]);
+        }
+        return triples;
     }
 
     private final int[] a;

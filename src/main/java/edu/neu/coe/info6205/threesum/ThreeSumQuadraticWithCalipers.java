@@ -1,6 +1,7 @@
 package edu.neu.coe.info6205.threesum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -30,6 +31,7 @@ public class ThreeSumQuadraticWithCalipers implements ThreeSum {
      * @return a Triple[].
      */
     public Triple[] getTriples() {
+        Arrays.sort(a);
         List<Triple> triples = new ArrayList<>();
         Collections.sort(triples); // ???
         for (int i = 0; i < length - 2; i++)
@@ -49,20 +51,38 @@ public class ThreeSumQuadraticWithCalipers implements ThreeSum {
     public static List<Triple> calipers(int[] a, int i, Function<Triple, Integer> function) {
         List<Triple> triples = new ArrayList<>();
         // TO BE IMPLEMENTED  : use function to qualify triples and to navigate otherwise.
+        // Skip duplicate values for the fixed middle index
+        if (i > 0 && a[i] == a[i - 1]) {
+            return triples;
+        }
 
+        int left = i+1, right = a.length-1;
+        int target = -a[i];
 
+        while(left < right) {
+            int sum = a[left] + a[right];
+            // if it is a valid triplet
+            if(sum == target) {
+                // add to the list
+                triples.add(new Triple(a[i], a[left], a[right]));
 
-
-
-
-
-
-
-
-
-
-
-throw new RuntimeException("implementation missing");
+                // skip duplicate values for both pointers
+                while (left < right && a[left] == a[left + 1]) {
+                    left++;
+                }
+                while (left < right && a[right] == a[right - 1]) {
+                    right--;
+                }
+                // update pointers
+                left++;
+                right--;
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return triples;
     }
 
     private final int[] a;
