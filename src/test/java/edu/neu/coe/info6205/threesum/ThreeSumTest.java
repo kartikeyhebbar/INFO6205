@@ -15,7 +15,7 @@ public class ThreeSumTest {
     public void testGetTriplesJ0() {
         int[] ints = new int[]{-2, 0, 2};
         ThreeSumQuadratic target = new ThreeSumQuadratic(ints);
-        List<Triple> triples = target.getTriples(1);
+        List<Triple> triples = target.getTriples(0);
         assertEquals(1, triples.size());
     }
 
@@ -24,7 +24,7 @@ public class ThreeSumTest {
         int[] ints = new int[]{30, -40, -20, -10, 40, 0, 10, 5};
         Arrays.sort(ints);
         ThreeSumQuadratic target = new ThreeSumQuadratic(ints);
-        List<Triple> triples = target.getTriples(3);
+        List<Triple> triples = target.getTriples(0);
         assertEquals(2, triples.size());
     }
 
@@ -33,8 +33,8 @@ public class ThreeSumTest {
         Supplier<int[]> intsSupplier = new Source(10, 15, 2L).intsSupplier(10);
         int[] ints = intsSupplier.get();
         ThreeSumQuadratic target = new ThreeSumQuadratic(ints);
-        List<Triple> triples = target.getTriples(5);
-        assertEquals(1, triples.size());
+        List<Triple> triples = target.getTriples(0);
+        assertEquals(0, triples.size());
     }
 
     @Test

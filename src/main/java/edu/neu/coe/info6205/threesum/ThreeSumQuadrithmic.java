@@ -25,6 +25,7 @@ class ThreeSumQuadrithmic implements ThreeSum {
     }
 
     public Triple[] getTriples() {
+        Arrays.sort(a);
         List<Triple> triples = new ArrayList<>();
         for (int i = 0; i < length; i++)
             for (int j = i + 1; j < length; j++) {

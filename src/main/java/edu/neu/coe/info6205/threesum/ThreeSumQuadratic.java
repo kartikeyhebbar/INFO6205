@@ -21,7 +21,6 @@ public class ThreeSumQuadratic implements ThreeSum {
     }
 
     public Triple[] getTriples() {
-        Arrays.sort(a);
         List<Triple> triples = new ArrayList<>();
         for (int i = 0; i < length-1; i++) triples.addAll(getTriples(i));
         Collections.sort(triples);

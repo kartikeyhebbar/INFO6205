@@ -7,7 +7,14 @@ import java.util.Arrays;
 public class ThreeSumDriver {
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, -3, -1, 5, -4};
+        // arrays to test code performance
+        int[] arr = {-2, 0, 2};
+//        int[] arr = {1, 2, -3, -1, 5, -4};
+//        int[] arr = {10, 1, -10, 20, 0, 2, -3, -20, 30, 15, -5, 3};
+//        int[] arr = {0, 1, 2, -3, 4, 5, -6, 7, 8, -9, 10, 11, 12, -13, -14, -15, 16, 17, 18, -19, 20, 21, -22, 23};
+//        int[] arr = {10, -35, 18, 29, -26, -16, 48, 14, -11, 4, -4, 1, 32, 40, 26, 28, -28, -3, 45, 6, 10, 4, 2, 48, -34, 50, 23, 35, 17, 47, 29, 19, 40, 41, 44, -2, 42, 14, 26, 22, 13, -24, 12, 13, -18, 10, 0, 49};
+
+        System.out.println("Array: " + Arrays.toString(arr));
         try(Stopwatch stopwatch = new Stopwatch()) {
             ThreeSumCubic threeSumCubic = new ThreeSumCubic(arr);
             Triple[] cubicResult = threeSumCubic.getTriples();
