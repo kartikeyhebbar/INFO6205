@@ -61,33 +61,29 @@ public class Timer {
      */
     public <T, U> double repeat(int n, boolean warmup, Supplier<T> supplier, Function<T, U> function, UnaryOperator<T> preFunction, Consumer<U> postFunction) {
         // TO BE IMPLEMENTED : note that the timer is running when this method is called and should still be running when it returns.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // SKELETON
-         return 0;
+        logger.trace("Testing with : " + n + " runs");
+        T value = supplier.get();
+        pause();    // pause without counting a lap
+        // run the function n times without being timed
+        for(int i=0; i<n; i++) {
+            if(preFunction != null) {
+                value = preFunction.apply(value);   // apply the preFunction to value if it's not null
+            }
+            // resume the timer
+            resume();
+            // Assign the function to a variable of type U
+            U func = function.apply(value);
+            // lap the timer
+            pauseAndLap();
+            // check if the postFunction is null or not, and make it accept the func value defined earlier
+            if(postFunction != null) {
+                postFunction.accept(func);
+            }
+        }
+        // get the mean lap time
+        double meanLapTime = meanLapTime();
+        resume();   // resume the timer
+         return meanLapTime;
         // END SOLUTION
     }
 
@@ -213,10 +209,9 @@ public class Timer {
      * @return the number of ticks for the system clock. Currently defined as nano time.
      */
     private static long getClock() {
-        // TO BE IMPLEMENTED 
-
+        // TO BE IMPLEMENTED
         // SKELETON
-         return 0;
+         return System.nanoTime();
         // END SOLUTION
     }
 
@@ -231,7 +226,7 @@ public class Timer {
         // TO BE IMPLEMENTED 
 
         // SKELETON
-         return 0;
+         return (double) ticks/1000000; // returns ticks in milliseconds
         // END SOLUTION
     }
 
