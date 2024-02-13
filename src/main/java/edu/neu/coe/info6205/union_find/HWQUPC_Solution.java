@@ -25,12 +25,12 @@ public class HWQUPC_Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of sites (N): ");
-        int N = sc.nextInt();
-        int count = 0;
-        for(int i=0; i<100; i++) {
-            count += count(N);
+        while(sc.hasNext()) {
+            int N = sc.nextInt();
+            int count = count(N);
+            System.out.println("No. of connections generated: " + count);
+            System.out.println("Enter the number of sites (N): ");
         }
-        System.out.println("Avg. No. of connections generated: " + count/100);
     }
 
 }
